@@ -2,19 +2,39 @@
 
 
 {% block content %}
-
-{% if object %}
-    <h1>Edit {{ object.name }}</h1>
+<div class="text-center">
+    {% if object %}
+    <h1>Edit <span class="text-primary">{{ object.name }}</span></h1>
 {% else %}
     <h1>Add Dog</h1>
 {% endif %}
-    
+</div>
+</br></br>
+<div class="d-flex flex-column align-items-center justify-content-center">
     <form action="" method="post">
         {% csrf_token %}
-        <table>
+        <table class="table vertical-align:middle">
             {{ form.as_table }}
         </table>
-        <input type="submit" value="Submit!" class="btn">
+    </br>
     </form>
+    <input type="submit" value="Submit!" class="btn btn-outline-dark">
+</div>
+
+<script>
+    const nameEl = document.querySelector('#id_name');
+    nameEl.className = 'form-control';
+
+    const breedEl = document.querySelector('#id_breed');
+    breedEl.classList.add('form-control', 'form-control-md');
+
+    const descEl = document.querySelector('#id_description');
+    descEl.className = 'form-control';
+
+    const numEl = document.querySelector('#id_age');
+    numEl.className = 'form-control';
+    
+</script>
+    
 {% endblock %}
     

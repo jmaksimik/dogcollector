@@ -2,14 +2,17 @@
 
 
 {% block content %}
+<div class="d-flex flex-column align-items-center">
     <h1>Delete Dog</h1>
-
+</br></br>
     <h4>Are you sure you want to delete {{ object.name }}?</h4>
-
+</br></br>
     <form action="" method="post">
         {% csrf_token %}
-        <input type="submit" value="Goodbye Doggo" class="btn">
+        <input type="submit" value="Goodbye Doggo" class="btn btn-outline-dark">&nbsp;
         <a href="{% url 'detail' dog.id %}">Cancel</a>
     </form>
+</div>
+    
 {% endblock %}
     

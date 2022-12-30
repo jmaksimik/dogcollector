@@ -2,30 +2,33 @@
 
 
 {% block content %}
-<h1>Dog Details</h1>
+<h1 class="text-center">Dog Details</h1>
 </br></br></br>
 <div class="container">
     <div class="row align-items-start">
         <div class="card col">
-            <h5 class="card-title">{{ dog.name }}</h5>
-            <p class="card-body">Breed: {{ dog.breed }}</p>
-            <p class="card-body">Description: {{ dog.description }}</p>
-            {% if dog.age > 0 %}
-            <p class="card-body">Age: {{ dog.age }}</p>
-            {% else %}
-            <p class="card-body">Age: Pup</p>
-            {% endif %}
-            <a class="btn btn-outline-dark" href="{% url 'dogs_update' dog.id %}">Edit</a>
+            <h3 class="card-title text-primary text-center">{{ dog.name }}</h3>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Breed: {{ dog.breed }}</li>
+                <li class="list-group-item">Description: {{ dog.description }}</li>
+                {% if dog.age > 0 %}
+                    <li class="list-group-item">Age: {{ dog.age }}</li>
+                {% else %}
+                    <li class="list-group-item">Age: Pup</li>
+                {% endif %}
+            </ul>
         </br>
-            <a class="btn btn-outline-dark" href="{% url 'dogs_delete' dog.id %}">Delete</a>
+            <a class="btn btn-outline-dark" style="width: 10rem;" href="{% url 'dogs_update' dog.id %}">Edit</a>
+        </br>
+            <a class="btn btn-outline-dark" style="width: 10rem;" href="{% url 'dogs_delete' dog.id %}">Delete</a>
         </div>
         <div class="col offset-md-2">
-            <form action="{% url 'add_feeding' dog.id %}" method="POST">
+            <form class="form-control" action="{% url 'add_feeding' dog.id %}" method="POST">
                 {% csrf_token %}
                 {{ feeding_form.as_p }}
-                <input type="submit" class="btn" value="Add Feeding">
+                <input type="submit" class="btn btn-outline-dark" value="Add Feeding">
             </form>
-            <table>
+            <table class=" table table-striped">
                 <thead>
                     <tr>
                         <th>Date</th>
@@ -44,6 +47,14 @@
         </div>      
     </div> 
 </div>
+
+<script>
+    const dateEl = document.querySelector('#id_date');
+    dateEl.type = 'date';
+
+    const selectEl = document.querySelector('#id_meal');
+    selectEl.className = 'form-select';
+</script>
 
 
 {% endblock %}

@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+import datetime
 
 # Create your models here.
 class Dog(models.Model):
@@ -18,7 +19,7 @@ MEALS = (
 )
 
 class Feeding(models.Model):
-    date = models.DateField('Feeding Date')
+    date = models.DateField(verbose_name='Feeding Date', default=datetime.date.today)
     meal = models.CharField(
         max_length=1,
         choices=MEALS,
