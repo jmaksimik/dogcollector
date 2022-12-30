@@ -17,9 +17,9 @@
                     <li class="list-group-item">Age: Pup</li>
                 {% endif %}
             </ul>
-        </br>
+        <br>
             <a class="btn btn-outline-dark" style="width: 10rem;" href="{% url 'dogs_update' dog.id %}">Edit</a>
-        </br>
+        <br>
             <a class="btn btn-outline-dark" style="width: 10rem;" href="{% url 'dogs_delete' dog.id %}">Delete</a>
         </div>
         <div class="col offset-md-2">
@@ -28,6 +28,12 @@
                 {{ feeding_form.as_p }}
                 <input type="submit" class="btn btn-outline-dark" value="Add Feeding">
             </form>
+        <br>
+        {% if dog.fed_for_today %}
+            <div class="alert alert-success text-center">{{ dog.name }} has been fed all meals for today!</div>
+        {% else %}
+            <div class="alert alert-danger text-center">{{ dog.name }} might be hungry!</div>
+        {% endif %}
             <table class=" table table-striped">
                 <thead>
                     <tr>
