@@ -4,11 +4,16 @@ import datetime
 from datetime import date
 
 # Create your models here.
+class Toy(models.Model):
+    name = models.CharField(max_length=50)
+    color = models.CharField(max_length=20)
+
 class Dog(models.Model):
     name = models.CharField(max_length=100)
     breed = models.CharField(max_length=100)
     description = models.TextField(max_length=250)
     age = models.IntegerField()
+    toys = models.ManyToManyField(Toy)
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'dog_id': self.id})
