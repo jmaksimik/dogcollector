@@ -12,14 +12,14 @@
                 <li class="list-group-item">Breed: {{ dog.breed }}</li>
                 <li class="list-group-item">Description: {{ dog.description }}</li>
                 {% if dog.age > 0 %}
-                    <li class="list-group-item">Age: {{ dog.age }}</li>
+                <li class="list-group-item">Age: {{ dog.age }}</li>
                 {% else %}
-                    <li class="list-group-item">Age: Pup</li>
+                <li class="list-group-item">Age: Pup</li>
                 {% endif %}
             </ul>
-        <br>
+            <br>
             <a class="btn btn-outline-dark" style="width: 10rem;" href="{% url 'dogs_update' dog.id %}">Edit</a>
-        <br>
+            <br>
             <a class="btn btn-outline-dark" style="width: 10rem;" href="{% url 'dogs_delete' dog.id %}">Delete</a>
         </div>
         <div class="col offset-md-2">
@@ -28,12 +28,12 @@
                 {{ feeding_form.as_p }}
                 <input type="submit" class="btn btn-outline-dark" value="Add Feeding">
             </form>
-        <br>
-        {% if dog.fed_for_today %}
+            <br>
+            {% if dog.fed_for_today %}
             <div class="alert alert-success text-center">{{ dog.name }} has been fed all meals for today!</div>
-        {% else %}
+            {% else %}
             <div class="alert alert-danger text-center">{{ dog.name }} might be hungry!</div>
-        {% endif %}
+            {% endif %}
             <table class=" table table-striped">
                 <thead>
                     <tr>
@@ -50,8 +50,49 @@
                     {% endfor %}
                 </tbody>
             </table>
-        </div>      
-    </div> 
+        </div>
+    </div>
+</div>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <h3>{{ dog.name }}'s Toys</h3>
+            {% if dog.toys.count %}
+            {% for toy in dog.toys.all %}
+            <div class="card">
+                <div class="card-body">
+                    <span class="card-title">
+                        A <span style="color: {{ toy.color }}">{{ toy.color }}</span> {{ toy.name }}
+                    </span>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <h5>No Toys :(</h5>
+            {% endif %}
+        </div>
+        <div class="col-4 offset-md-3">
+            <h3>Available Toys</h3>
+            {% if toys.count %}
+            {% for toy in toys.all %}
+            <div class="card">
+                <div class="card-body d-flex flex-row justify-content-between">
+                    <span class="card-title">
+                        A <span style="color: {{toy.color}}">{{ toy.color }}</span> {{ toy.name }}
+                    </span>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <button type="submit" style="width: 10rem;" class="btn btn-outline-dark">Add</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <h5>{{ dog.name }} Already Has All Toys Available</h5>
+            {% endif %}
+        </div>
+    </div>
 </div>
 
 <script>
