@@ -2,8 +2,9 @@
 
 
 {% block content %}
+<br>
 <h1 class="text-center">Dog List</h1>
-</br>
+<br>
 {% for dog in dogs  %}
     <div class="card container" style="width: 25rem;">
         <a href="{% url 'detail' dog.id %}">
@@ -20,7 +21,8 @@
                 </ul>  
             </div>
         </a>
-    </div> 
+    </div>
+<br> 
 {% endfor %}
     
     

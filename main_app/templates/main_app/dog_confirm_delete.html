@@ -9,7 +9,7 @@
 </br></br>
     <form action="" method="post">
         {% csrf_token %}
-        <input type="submit" value="Goodbye Doggo" class="btn btn-outline-dark">&nbsp;
+        <input type="submit" value="Goodbye Doggo" class="btn btn-outline-dark border border-3" style="background-color:#f3cfc6;">&nbsp;
         <a href="{% url 'detail' dog.id %}">Cancel</a>
     </form>
 </div>

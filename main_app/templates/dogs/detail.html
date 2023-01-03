@@ -18,15 +18,15 @@
                 {% endif %}
             </ul>
             <br>
-            <a class="btn btn-outline-dark" style="width: 10rem;" href="{% url 'dogs_update' dog.id %}">Edit</a>
+            <a class="btn btn-outline-dark border border-3" style="width: 10rem; background-color: #f3cfc6;" href="{% url 'dogs_update' dog.id %}">Edit</a>
             <br>
-            <a class="btn btn-outline-dark" style="width: 10rem;" href="{% url 'dogs_delete' dog.id %}">Delete</a>
+            <a class="btn btn-outline-dark border border-3 mb-2" style="width: 10rem; background-color: #f3cfc6;" href="{% url 'dogs_delete' dog.id %}">Delete</a>
         </div>
         <div class="col offset-md-2">
             <form class="form-control" action="{% url 'add_feeding' dog.id %}" method="POST">
                 {% csrf_token %}
                 {{ feeding_form.as_p }}
-                <input type="submit" class="btn btn-outline-dark" value="Add Feeding">
+                <input type="submit" class="btn btn-outline-dark border border-3" style="background-color: #f3cfc6" value="Add Feeding">
             </form>
             <br>
             {% if dog.fed_for_today %}
@@ -55,7 +55,7 @@
 </div>
 <hr>
 <div class="container">
-    <div class="row">
+    <div class="row align-items-start">
         <div class="col-4">
             <h3>{{ dog.name }}'s Toys</h3>
             {% if dog.toys.count %}
@@ -81,9 +81,9 @@
                     <span class="card-title">
                         A <span style="color: {{toy.color}}">{{ toy.color }}</span> {{ toy.name }}
                     </span>
-                    <form action="" method="post">
+                    <form action="{% url 'assoc_toy' dog.id toy.id %}" method="post">
                         {% csrf_token %}
-                        <button type="submit" style="width: 10rem;" class="btn btn-outline-dark">Add</button>
+                        <button type="submit" class="btn btn-outline-dark border border-3" style="background-color:#f3cfc6;">Add</button>
                     </form>
                 </div>
             </div>
@@ -94,6 +94,7 @@
         </div>
     </div>
 </div>
+<br>
 
 <script>
     const dateEl = document.querySelector('#id_date');

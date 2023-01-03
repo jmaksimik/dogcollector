@@ -29,6 +29,10 @@ a {
   text-decoration: none;
 }
 
+nav {
+  height: 4em;
+}
+
 a:hover li{
   color: blue;
 }

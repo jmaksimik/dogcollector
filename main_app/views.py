@@ -33,7 +33,7 @@ class DogUpdate(UpdateView):
 
 class DogCreate(CreateView):
     model = Dog
-    fields = '__all__'
+    fields = ['name', 'breed', 'description', 'age']
 
 def add_feeding(request, dog_id):
     form = FeedingForm(request.POST)
@@ -62,3 +62,7 @@ def dogs_detail(request, dog_id):
         'feeding_form': feeding_form,
         'toys': toys_dog_doesnt_have
         })
+
+def assoc_toy(request, dog_id, toy_id):
+    Dog.objects.get(id=dog_id).toys.add(toy_id)
+    return redirect('detail', dog_id=dog_id)
